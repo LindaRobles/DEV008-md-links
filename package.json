@@ -1,6 +1,7 @@
 {
   "name": "md-links",
   "version": "0.1.0",
+  "main": "index.js",
   "engines": {
     "node": ">=16.x"
   },
@@ -8,5 +9,13 @@
     "createdAt": "2023-06-28T16:05:09.952Z",
     "version": "6.3.0",
     "commit": "a942adeb868f1fe54b86e34cc4fc4ddb0601700d"
+  },
+  "dependencies": {
+    "axios": "^1.4.0",
+    "jest": "^29.6.2",
+    "node": "^19.6.1"
+  },
+  "scripts": {
+    "test": "jest"
   }
 }
