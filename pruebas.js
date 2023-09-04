@@ -86,16 +86,16 @@ readFileContent(filePath)
 //transforma en newPromise
 function getStatusLinks(linksArray) {
   const promises = linksArray.map((link) => {
-    return axios.get(link.url)
+    return axios.get(link.href)
       .then((response) => {
-        const statusText = `HTTP Status Code: ${response.status} ${response.statusText}`;
+        const statusText = `${response.status} ${response.statusText}`;
         return { ...link, status: statusText };
       })
       .catch((error) => {
         let statusText = 'HTTP Status Code: Unknown Error';
 
         if (error.response) {
-          statusText = `HTTP Status Code: ${error.response.status} ${error.response.statusText}`;
+          statusText = `${error.response.status} ${error.response.statusText}`;
         }
 
         return { ...link, status: statusText };
@@ -105,15 +105,15 @@ function getStatusLinks(linksArray) {
   return Promise.all(promises);
 }
 
-axios.get('https://ejemplo.com')
+
+/* axios.get('https://ejemplo.com')
   .then(() => {
     console.log('HTTP Status Code: 200 OK');
   })
   .catch(() => {
     console.log('HTTP Status Code: 404 Not Found');
-  }); 
-
-
+  });  */ 
+  //Para probar axios afuera. 
 
 // validar links
 
