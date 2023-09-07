@@ -44,10 +44,10 @@ if (!filePath) {
     .then((linksWithStatus) => {
       if (options.stats) {
         const totalStats = `Total: ${linksWithStatus.length}`;
-        const uniqueStats = `Unique: ${countTotalAndUnique(linksWithStatus)}`;
+        const uniqueStats = countTotalAndUnique(linksWithStatus);
         const brokenStats = `Broken: ${countBrokenLinks(linksWithStatus)}`;
         console.log(chalk.magenta(totalStats));
-        console.log(chalk.magenta(uniqueStats));
+        console.log(chalk.magenta(`Unique: ${uniqueStats.unique}`));
         console.log(chalk.magenta(brokenStats));
       }
       if (options.validate) {
