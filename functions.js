@@ -7,23 +7,25 @@ const axios = require('axios');
 function fileOrDirExists(filePath) {
   return fs.existsSync(filePath);
 }
-console.log("Path exists:", fileOrDirExists('./extra.md'));
+//console.log("Path exists:", fileOrDirExists('./extra.md'));
 
 // Función para convertir una ruta relativa en absoluta
 function convertToAbsolute(filePath) {
   return path.resolve(filePath);
 }
-console.log("Absolute path:", convertToAbsolute ('./extra.md'));
+//console.log("Absolute path:", convertToAbsolute ('./extra.md'));
 //console.log("Absolute path:", convertToAbsolute ('./index.js'));
 
 // Confirmar si es un archivo .md
 function isMarkdownFile(filePath) {
   return path.extname(filePath) === ".md";
 }
-console.log("Is markdown file:", isMarkdownFile('./extra.md'));
+//console.log("Is markdown file:", isMarkdownFile('./extra.md'));
 
-const filePath = 'D:/Laboratoria/DEV008-md-links/README.md';
-//D:\Laboratoria\DEV008-md-links\README.md
+//const filePath = 'D:/Laboratoria/DEV008-md-links/README.md';
+//const filePath = 'D:/Laboratoria/DEV008-md-links/extra.md'; //error al copiar path?
+//Función para voltear el path**por windows!!!
+
 // Leer el archivo .md
 function readFileContent(filePath) {
     return new Promise((resolve, reject) => {
@@ -60,10 +62,7 @@ function findLinksInMarkdown(markdownContent, filePath) {
   });
 }
 
-
-//const filePath = 'D:\Laboratoria\DEV008-md-links\extra.md';
-
-
+/* 
 readFileContent(filePath)
   .then((markdownContent) => {
     return findLinksInMarkdown(markdownContent, filePath); 
@@ -72,11 +71,20 @@ readFileContent(filePath)
     return getStatusLinks(links); 
   })
   .then((linksWithStatus) => {
+    //linksWithStatus no está declarada porque se obtiene como resultado de la promesa
     console.log("Links with status:", linksWithStatus);
-  })
+  
+    const totalAndUnique = countTotalAndUnique(linksWithStatus);
+    const brokenLinkCount = countBrokenLinks(linksWithStatus);
+ 
+  console.log('Total Links:', totalAndUnique.total);
+  console.log('Unique Links:', totalAndUnique.unique);
+  console.log('Broken Links:', brokenLinkCount);
+})
+ 
   .catch((error) => {
     console.error("Error:", error);
-  });
+  }); */
 
 
 
@@ -107,9 +115,51 @@ function getStatusLinks(linksArray) {
   return Promise.all(promises);
 }
 
+// Spread Syntax (...) 
+// eso agrega los elementos individuales al arreglo links.
+
+//-----------------------------Here functions for stats!!!-------------------------------------
+// Count total and unique links
+function countTotalAndUnique(linksArray) {
+  const totalLinks = linksArray.length;
+
+  //con Set NO sirve lenght, usar .size*
+  //Set-estructura de datos Js que representa una colección de valores únicos
+  const uniqueLinks = new Set(linksArray.map((link) => link.href));
+  return {
+    total: totalLinks,
+    unique: uniqueLinks.size,
+  };
+}
+
+
+// count broken links
+function countBrokenLinks(linksArray) {
+  let count = 0;
+  for (const link of linksArray) {
+    if (link.ok !== 'OK') {
+      count++;
+    }
+  }
+  return count;
+}
+/* function countBrokenLinks(linksArray) {
+  return linksArray.reduce((count, link) => {
+    if (link.ok !== 'OK') {
+      count++;
+    }
+    return count;
+  }, 0);
+} */
+
+
   module.exports = {
     fileOrDirExists,
     convertToAbsolute,
     isMarkdownFile,
     readFileContent,
+    getStatusLinks,
+    findLinksInMarkdown,
+    countTotalAndUnique,
+    countBrokenLinks,
   };
