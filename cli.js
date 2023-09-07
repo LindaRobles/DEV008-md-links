@@ -12,7 +12,7 @@ console.log("  /\\_/\\");
 console.log("=( o.o )=");
 console.log("  > - <");
 
-console.log(chalk.yellow("Quick tip! If your path has inverted backslashes instead of '/',\n please enter your path within double quotes ^^ \n"));
+console.log(chalk.yellow("Quick tip! If your path has inverted backslashes instead of '/',\n please enter your path within double quotes, ty! ;) \n"));
 
 
 // Yargs hace el CLI ejecutable
