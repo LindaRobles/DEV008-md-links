@@ -7,7 +7,7 @@ const axios = require('axios');
 function fileOrDirExists(filePath) {
   return fs.existsSync(filePath);
 }
-console.log("Path exists:", fileOrDirExists('./extra.md'));
+//console.log("Path exists:", fileOrDirExists('./extra.md'));
 
 // Función para convertir una ruta relativa en absoluta
 function convertToAbsolute(filePath) {
@@ -23,7 +23,7 @@ function isMarkdownFile(filePath) {
 //console.log("Is markdown file:", isMarkdownFile('./extra.md'));
 
 //const filePath = 'D:/Laboratoria/DEV008-md-links/README.md';
-const filePath = 'D:/Laboratoria/DEV008-md-links/extra.md'; //error al copiar path?
+//const filePath = 'D:/Laboratoria/DEV008-md-links/extra.md'; //error al copiar path?
 //Función para voltear el path**por windows!!!
 
 // Leer el archivo .md

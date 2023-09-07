@@ -4,7 +4,16 @@ const { mdLinks } = require('./index.js');
 const { countTotalAndUnique, countBrokenLinks } = require('./functions.js');
 const chalk = require('chalk');
 
-console.log(chalk.magenta('¡Here is my md-links library!'));
+console.log(chalk.magentaBright("*************************************"));
+console.log(chalk.magentaBright('Hey! :) Here is Lin md-links library!'));
+console.log(chalk.magentaBright("*************************************"));
+
+console.log("  /\\_/\\");
+console.log("=( o.o )=");
+console.log("  > ^ <");
+
+console.log(chalk.yellow("Quick tip! If your path uses inverted diagonal instead of '/',\n please enter your path within double quotes ^^ \n"));
+
 
 // Yargs hace el CLI ejecutable
 //Yargs se encarga del análisis de los argumentos y opciones proporcionados por el usuario
@@ -46,9 +55,9 @@ if (!filePath) {
         const totalStats = `Total: ${linksWithStatus.length}`;
         const uniqueStats = countTotalAndUnique(linksWithStatus);
         const brokenStats = `Broken: ${countBrokenLinks(linksWithStatus)}`;
-        console.log(chalk.magenta(totalStats));
-        console.log(chalk.magenta(`Unique: ${uniqueStats.unique}`));
-        console.log(chalk.magenta(brokenStats));
+        console.log(chalk.cyanBright(totalStats));
+        console.log(chalk.cyanBright(`Unique: ${uniqueStats.unique}`));
+        console.log(chalk.cyanBright(brokenStats));
       }
       if (options.validate) {
         linksWithStatus.forEach((link) => {

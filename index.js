@@ -13,8 +13,8 @@ const {
 // aquí va mdLinks 
 //función principal que tomará una ruta de archivo y opciones, y devolverá una promesa. 
 const mdLinks = (filePath, options = { validate: false, stats: false }) => new Promise((resolve, reject) => {
-  const shouldValidate = options.validate;
-  const shouldShowStats = options.stats;
+  //const shouldValidate = options.validate;
+  //const shouldShowStats = options.stats;
   const absolutePath = convertToAbsolute(filePath);
   const pathExist = fs.existsSync(absolutePath);
 
