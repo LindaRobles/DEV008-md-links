@@ -1,49 +1,59 @@
+const fs = require("fs");
 const {
   fileOrDirExists,
-  convertToAbsolute,
-  isMarkdownFile,
-  readFileContent,
-  findLinksInMarkdown,
-} = require('../functions');
+    convertToAbsolute,
+    isMarkdownFile,
+    readFileContent,
+    getStatusLinks,
+    findLinksInMarkdown,
+} = require('./functions.js');
 
-// función mdLinks 
+
+
+// aquí va mdLinks 
 //función principal que tomará una ruta de archivo y opciones, y devolverá una promesa. 
-const mdLinks = (filePath, options) => {
-  return new Promise((resolve, reject) => {
-    // File exists
-    if (!fileOrDirExists(filePath)) {
-      reject(new Error('File or directory does not exist'));
-      return;
-    }
+const mdLinks = (filePath, options = { validate: false, stats: false }) => new Promise((resolve, reject) => {
+  const shouldValidate = options.validate;
+  const shouldShowStats = options.stats;
+  const absolutePath = convertToAbsolute(filePath);
+  const pathExist = fs.existsSync(absolutePath);
 
-    // Convert Path
-    const absolutePath = convertToAbsolute(filePath);
+  if (!pathExist) {
+    return reject(new Error('Path does not exist' + absolutePath));
+  }
 
-    // Verify if it's a md
-    if (!isMarkdownFile(absolutePath)) {
-      reject(new Error('File is not a markdown file'));
-      return;
-    }
+  const isMdFile = isMarkdownFile(absolutePath);
+  if (!isMdFile) {
+    return reject(new Error('File is not a markdown!'));
+  }
 
-    // Read md content
-    readFileContent(absolutePath)
-      .then((markdownContent) => {
-        return findLinksInMarkdown(markdownContent);
-      })
-      .then((links) => {
-        return getStatusLinks(links); // Obtiene el status HTTP para cada enlace
-      })
-      .then((linksWithStatus) => {
-        resolve(linksWithStatus); // Devuelve el array de enlaces con status
-      })
-      .catch((error) => {
-        reject(error);
-      });
+  readFileContent(filePath)
+  .then((markdownContent) => {
+    return findLinksInMarkdown(markdownContent, filePath); 
+  })
+  .then((links) => {
+    return getStatusLinks(links); 
+  })
+  .then((linksWithStatus) => {
+    //linksWithStatus no está declarada porque se obtiene como resultado de la promesa
+    resolve(linksWithStatus);
+  })
+  .catch((error) => {
+    // En caso de error, rechazamos la promesa
+    reject(error);
   });
-};
+  });   
 
- */// Spread Syntax (...) 
-// eso agrega los elementos individuales al arreglo links.
+
+
+
+//..to try mdLinks promise
+/* mdLinks('D:/Laboratoria/DEV008-md-links/README.md', { validate: true }).then((result) => {
+  console.log(result);
+}).catch((error) => {
+  console.error(error);
+});  */
+
 
 module.exports = {
   mdLinks,
