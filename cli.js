@@ -10,9 +10,9 @@ console.log(chalk.magentaBright("*************************************"));
 
 console.log("  /\\_/\\");
 console.log("=( o.o )=");
-console.log("  > ^ <");
+console.log("  > - <");
 
-console.log(chalk.yellow("Quick tip! If your path uses inverted diagonal instead of '/',\n please enter your path within double quotes ^^ \n"));
+console.log(chalk.yellow("Quick tip! If your path has inverted backslashes instead of '/',\n please enter your path within double quotes ^^ \n"));
 
 
 // Yargs hace el CLI ejecutable
