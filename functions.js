@@ -153,6 +153,8 @@ function countBrokenLinks(linksArray) {
 } */
 
 
+//Comentario para readme2
+
   module.exports = {
     fileOrDirExists,
     convertToAbsolute,

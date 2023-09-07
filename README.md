@@ -36,5 +36,6 @@ Y después en la consola podrás utilizarlo como en este ejemplo:
 md-links + La ruta relativa o absoluta del archivo, ejemplo: ./nombredeCarperta + Opciones de comandos
 
 ## 4. Ejemplos
-![option -v](optionv.JPG)
-![option -s](options.JPG)
+![option -v](option-v.PNG)
+![option -s](option-s.PNG)
+![errores](iferror.PNG)
