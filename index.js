@@ -54,7 +54,7 @@ const mdLinks = (filePath, options = { validate: false, stats: false }) => new P
   console.error(error);
 });  */
 
-//Comentario imagenes
+
 module.exports = {
   mdLinks,
 };

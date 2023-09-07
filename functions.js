@@ -24,7 +24,7 @@ function isMarkdownFile(filePath) {
 
 //const filePath = 'D:/Laboratoria/DEV008-md-links/README.md';
 //const filePath = 'D:/Laboratoria/DEV008-md-links/extra.md'; //error al copiar path?
-//Función para voltear el path**por windows!!!
+
 
 // Leer el archivo .md
 function readFileContent(filePath) {
