@@ -5,7 +5,7 @@ const { countTotalAndUnique, countBrokenLinks } = require('./functions.js');
 const chalk = require('chalk');
 
 console.log(chalk.magentaBright("*************************************"));
-console.log(chalk.magentaBright('Hey! :) Here is Lin md-links library!'));
+console.log(chalk.magentaBright('Hey! :) Here is lin-md-links library!'));
 console.log(chalk.magentaBright("*************************************"));
 
 console.log("  /\\_/\\");
@@ -15,8 +15,12 @@ console.log("  > - <");
 console.log(chalk.yellow("Quick tip! If your path has inverted backslashes instead of '/',\n please enter your path within double quotes, ty! ;) \n"));
 
 
-// Yargs hace el CLI ejecutable
+// Yargs paquete de Node.js que simplifica la tarea de manejar argumentos de línea de comandos.
 //Yargs se encarga del análisis de los argumentos y opciones proporcionados por el usuario
+
+/* process.argv: es un arreglo que contiene los argumentos 
+pasados al programa Node.js desde la línea de comandos. 
+pero yargs simplifica el uso de estos argumentos y proporciona una interfaz más conveniente. */
 
 yargs
 .usage(chalk.bold.cyanBright('md-links ./path/to/file.md -v -s')) 
@@ -36,9 +40,10 @@ yargs
 .help('h')
 .alias('h', 'help')
 .argv;
+//se utiliza .argv para obtener un objeto que representa los argumentos y opciones proporcionados por el usuario.
 
-const args = yargs.argv;
-const filePath = args._[0];
+const args = yargs.argv; //accedes a los args que te da el usuario
+const filePath = args._[0]; //se accede al primer elemento del arreglo, para obtener la ruta que da el usuario
 const options = {
   validate: args.validate,
   stats: args.stats,

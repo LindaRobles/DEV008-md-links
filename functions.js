@@ -1,5 +1,5 @@
-const fs = require("fs");
-const path = require("path");
+const fs = require("fs"); //módulo se utiliza para interactuar con el sistema de archivos. 
+const path = require("path"); //módulo se utiliza para trabajar con rutas de archivos y directorios de manera compatible con diferentes sistemas operativos.
 const axios = require('axios');
 
 
@@ -13,6 +13,7 @@ function fileOrDirExists(filePath) {
 function convertToAbsolute(filePath) {
   return path.resolve(filePath);
 }
+//usa el módulo path con su método resolve
 //console.log("Absolute path:", convertToAbsolute ('./extra.md'));
 //console.log("Absolute path:", convertToAbsolute ('./index.js'));
 
@@ -27,6 +28,7 @@ function isMarkdownFile(filePath) {
 
 
 // Leer el archivo .md
+//callback**
 function readFileContent(filePath) {
     return new Promise((resolve, reject) => {
       fs.readFile(filePath, 'utf-8', (err, data) => {
