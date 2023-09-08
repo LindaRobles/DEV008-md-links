@@ -1,5 +1,5 @@
 {
-  "name": "md-links",
+  "name": "lin-md-links",
   "version": "0.1.0",
   "main": "index.js",
   "engines": {
@@ -19,7 +19,7 @@
     "yargs": "^17.7.2"
   },
   "bin": {  
-    "md-links": "cli.js"  
+    "lin-md-links": "cli.js"  
   },
   "scripts": {
     "test": "jest"
